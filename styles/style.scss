@@ -56,9 +56,16 @@
           color: rgb(124, 2, 2);
         }
       }
+      &.offline{
+        background-color:rgb(151, 151, 151) !important;
+        .user-status{
+          color: rgb(0, 0, 0) !important;
+        }
+      }
     }
   }
   .controls {
     display: flex;
+    margin-top:10px;
   }
 }

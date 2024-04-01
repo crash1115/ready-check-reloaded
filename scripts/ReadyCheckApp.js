@@ -5,6 +5,8 @@ export default class ReadyCheckApp extends Application {
             template: "modules/ready-check-reloaded/templates/ready-check-app.hbs",
             title: "Ready Check",
             resizable: false,
+            height: 356,
+            width: "auto",
             id: "readycheck-app"
         });
     }
@@ -18,10 +20,13 @@ export default class ReadyCheckApp extends Application {
                 id: u._id,
                 name: u.name,
                 img: u.character?.img || u.avatar,
-                isReady: u.flags['ready-check-reloaded'].isReady
+                isReady: u.flags['ready-check-reloaded'].isReady,
+                isOffline: !u.active
             }
             return info;
-        });
+        }).sort((a,b) => a.isOffline - b.isOffline);
+        data.readyUsers = data.users.filter(u => u.isReady).length;
+        data.onlineUsers = data.users.filter(u => !u.isOffline).length;
         return data;
     }
 

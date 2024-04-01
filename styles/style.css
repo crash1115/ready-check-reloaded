@@ -49,6 +49,13 @@
 #ready-check-app .users-container .user-card.not-ready .user-status {
   color: rgb(124, 2, 2);
 }
+#ready-check-app .users-container .user-card.offline {
+  background-color: rgb(151, 151, 151) !important;
+}
+#ready-check-app .users-container .user-card.offline .user-status {
+  color: rgb(0, 0, 0) !important;
+}
 #ready-check-app .controls {
   display: flex;
+  margin-top: 10px;
 }

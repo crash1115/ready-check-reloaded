@@ -11,8 +11,15 @@ Hooks.once("init", () => {
 Hooks.once("ready", () => {
   // If there's an active ready check, display it
   const checkIsActive = game.settings.get('ready-check-reloaded','checkIsActive');
+  const isReady = game.user.flags['ready-check-reloaded'].isReady;
   if(checkIsActive){
     openReadyCheckApp();
+    const socketData = {
+      user: game.user,
+      action: "UPDATE_STATUS",
+      isReady: isReady
+    };
+    game.socket.emit('module.ready-check-reloaded', socketData);
   }
 })
 
