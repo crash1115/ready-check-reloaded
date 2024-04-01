@@ -8,9 +8,10 @@ Hooks.once("init", () => {
   createSocketHandler();
 });
 
-Hooks.once("ready", () => {
+Hooks.once("ready", async() => {
   // If there's an active ready check, display it
   const checkIsActive = game.settings.get('ready-check-reloaded','checkIsActive');
+  await game.user.setFlag('ready-check-reloaded','isReady', false);
   const isReady = game.user.flags['ready-check-reloaded'].isReady;
   if(checkIsActive){
     openReadyCheckApp();
@@ -58,6 +59,7 @@ function createSocketHandler(){
         fromUser: string
         action: "START_CHECK" "END_CHECK" or "UPDATE_STATUS"
         isReady: true or false
+        alertSound: a string, path to a sound to play
       }
     */
     if(data.action === 'START_CHECK'){
@@ -92,7 +94,7 @@ async function startReadyCheck(){
   await game.settings.set('ready-check-reloaded','checkIsActive', true);
   
   openReadyCheckApp();
-
+  playReadyCheckAlert();
   const socketData = {
     user: game.user,
     action: "START_CHECK"
@@ -102,7 +104,7 @@ async function startReadyCheck(){
 
 async function recieveReadyCheck(){
   await game.user.setFlag('ready-check-reloaded','isReady', false);
-
+  playReadyCheckAlert();
   openReadyCheckApp();
   const socketData = {
     user: game.user,
@@ -112,24 +114,30 @@ async function recieveReadyCheck(){
   game.socket.emit('module.ready-check-reloaded', socketData);
 }
 
-async function toggleReadyStatus(){
+export async function toggleReadyStatus(){
   const isReady = !game.user.flags['ready-check-reloaded'].isReady;
   const checkIsActive = game.settings.get('ready-check-reloaded','checkIsActive');
   await game.user.setFlag('ready-check-reloaded','isReady', isReady);
   if(checkIsActive){
+    const alertSound = game.settings.get('ready-check-reloaded','responseAlertSoundPath');
+    playResponseAlert(alertSound, isReady);
     openReadyCheckApp();
     const socketData = {
       user: game.user,
       action: "UPDATE_STATUS",
-      isReady: isReady
+      isReady: isReady,
+      alertSound: alertSound
     };
     game.socket.emit('module.ready-check-reloaded', socketData);
+  } else {
+    sendChatMessage(game.user, isReady);
   }
 }
 
 function recieveStatusUpdate(data){
   const checkIsActive = game.settings.get('ready-check-reloaded','checkIsActive');
   if(checkIsActive){
+    playResponseAlert(data.alertSound, data.isReady);
     openReadyCheckApp();
   }
 }
@@ -149,3 +157,31 @@ async function closeReadyCheckApp(){
   rca = null;
 }
 
+function sendChatMessage(user, isReady){
+  const sendMessage = game.settings.get("ready-check-reloaded", "showChatMessagesForUserUpdates");
+  if(!sendMessage) return;
+  const status = isReady ? "ready" : "not ready";
+  const content = `${user.name} is ${status}.`;
+  ChatMessage.create({speaker:{alias: "Ready Set Go: Reloaded"}, content: content});
+}
+
+function playReadyCheckAlert(){
+  const playAlert = game.settings.get("ready-check-reloaded", "playAlertForCheck");
+  if (!playAlert) return;
+  const alertSound = game.settings.get("ready-check-reloaded", "checkAlertSoundPath");
+  if(!alertSound){
+    AudioHelper.play({src: "modules/ready-check-reloaded/sounds/notification.mp3", volume: 1, autoplay: true, loop: false}, true);
+  } else{
+    AudioHelper.play({src: alertSound, volume: 1, autoplay: true, loop: false}, true);
+  }
+}
+
+function playResponseAlert(alertSound, isReady){
+  const playAlert = game.settings.get("ready-check-reloaded", "playAlertForResponse");
+  if (!playAlert || !isReady) return;
+  if(!alertSound){
+    AudioHelper.play({src: "modules/ready-check-reloaded/sounds/notification-2.mp3", volume: 1, autoplay: true, loop: false}, true);
+  } else{
+    AudioHelper.play({src: alertSound, volume: 1, autoplay: true, loop: false}, true);
+  }
+}

@@ -1,7 +1,7 @@
 export function registerSettings() {
     game.settings.register("ready-check-reloaded", "showChatMessagesForUserUpdates", {
         name: "Show Chat Messages",
-        hint: "Display chat messages when players change their ready status.",
+        hint: "Display chat messages when players change their ready status while no ready check is active.",
         scope: "world",
         config: true,
         default: true,

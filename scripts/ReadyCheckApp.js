@@ -1,3 +1,5 @@
+import { toggleReadyStatus } from "../ready-check-reloaded.js";
+
 export default class ReadyCheckApp extends Application {
 
     static get defaultOptions() {
@@ -34,14 +36,7 @@ export default class ReadyCheckApp extends Application {
     super.activateListeners(html);
 
         html.on("click", ".toggle-btn", async ev => {
-            const isReady = !game.user.flags['ready-check-reloaded'].isReady;
-            await game.user.setFlag('ready-check-reloaded','isReady', isReady);
-            const socketData = {
-                user: game.user,
-                action: "UPDATE_STATUS",
-                isReady: isReady
-            };
-            game.socket.emit('module.ready-check-reloaded', socketData);
+            toggleReadyStatus();
             this.render(true);
         });
 
