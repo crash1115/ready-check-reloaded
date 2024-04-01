@@ -1,5 +1,5 @@
 # Version 0.1.2
-- Fix issue causing alert sounds to playing multiple times concurrently.
+- Fix issue causing alert sounds to playing multiple times simultaneously.
 
 # Version 0.1.1
 - Fix issue with ready check app not resetting properly
