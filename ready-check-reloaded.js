@@ -87,7 +87,8 @@ function activateListeners(){
 
 async function startReadyCheck(){
   if(!game.user.isGM) return;
-  game.users.contents.forEach(async u => { await u.setFlag('ready-check-reloaded','isReady', false)});
+  await game.user.setFlag('ready-check-reloaded','isReady', false);
+  await game.users.contents.filter(u => !u.active).forEach(async u => { await u.setFlag('ready-check-reloaded','isReady', false)});
   await game.settings.set('ready-check-reloaded','checkIsActive', true);
   
   openReadyCheckApp();
@@ -99,8 +100,16 @@ async function startReadyCheck(){
   game.socket.emit('module.ready-check-reloaded', socketData);
 }
 
-function recieveReadyCheck(){
+async function recieveReadyCheck(){
+  await game.user.setFlag('ready-check-reloaded','isReady', false);
+
   openReadyCheckApp();
+  const socketData = {
+    user: game.user,
+    action: "UPDATE_STATUS",
+    isReady: false
+  };
+  game.socket.emit('module.ready-check-reloaded', socketData);
 }
 
 async function toggleReadyStatus(){
