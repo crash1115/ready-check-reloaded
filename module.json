@@ -1,0 +1,28 @@
+{
+  "name": "ready-check-reloaded",
+  "title": "Ready Set Go! Reloaded",
+  "description": "Implements ready checks and ready/not ready status toggles. A totally re-written, more modern version of Ready Set Go! - A Ready Check Module.",
+  "author": "crash1115",
+  "url": "https://github.com/crash1115/ready-check-reloaded",
+  "readme": "https://github.com//crash1115/ready-check-reloaded/blob/master/README.md",
+  "bugs": "https://github.com/crash1115/ready-check-reloaded/issues",
+  "version": "0.1.0",
+  "compatibility": {
+    "minimum": "11",
+    "verified": "11"
+  },
+  "esmodules": [
+    "ready-check-reloaded.js"
+  ],
+  "styles": [
+    "styles/style.css"
+  ],
+  "socket": true,
+  "manifest": "https://raw.githubusercontent.com/crash1115/ready-check-reloaded/main/module.json",
+  "download": "https://github.com/crash1115/ready-check-reloaded/releases/download/v0.1.0/ready-check.zip",
+  "flags": {
+    "hotReload": {
+        "extensions": ["html", "css", "json"]
+    }
+  } 
+}
