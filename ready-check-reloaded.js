@@ -59,7 +59,6 @@ function createSocketHandler(){
         fromUser: string
         action: "START_CHECK" "END_CHECK" or "UPDATE_STATUS"
         isReady: true or false
-        alertSound: a string, path to a sound to play
       }
     */
     if(data.action === 'START_CHECK'){
@@ -104,7 +103,6 @@ async function startReadyCheck(){
 
 async function recieveReadyCheck(){
   await game.user.setFlag('ready-check-reloaded','isReady', false);
-  playReadyCheckAlert();
   openReadyCheckApp();
   const socketData = {
     user: game.user,
@@ -125,8 +123,7 @@ export async function toggleReadyStatus(){
     const socketData = {
       user: game.user,
       action: "UPDATE_STATUS",
-      isReady: isReady,
-      alertSound: alertSound
+      isReady: isReady
     };
     game.socket.emit('module.ready-check-reloaded', socketData);
   } else {
@@ -137,7 +134,6 @@ export async function toggleReadyStatus(){
 function recieveStatusUpdate(data){
   const checkIsActive = game.settings.get('ready-check-reloaded','checkIsActive');
   if(checkIsActive){
-    playResponseAlert(data.alertSound, data.isReady);
     openReadyCheckApp();
   }
 }

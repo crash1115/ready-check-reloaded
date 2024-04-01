@@ -29,8 +29,8 @@ export function registerSettings() {
 
     game.settings.register("ready-check-reloaded", "playAlertForResponse", {
         name: "Play Alerts on Responses",
-        hint: "Disable this to prevent sounds from playing when users respond to ready checks. This is a client setting, so it only affects you.",
-        scope: "client",
+        hint: "Play each user's sound when they respond to ready checks.",
+        scope: "world",
         config: true,
         default: true,
         type: Boolean
