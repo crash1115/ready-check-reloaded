@@ -11,7 +11,12 @@
 }
 #players #ready-check-reloaded-controls {
   display: flex;
-  margin: 4px 2px 4px 2px;
+}
+#players #ready-check-reloaded-controls button {
+  margin: 0.25rem;
+  background: rgba(60, 60, 60, 0.6);
+  border: 1px solid rgb(25, 24, 19);
+  color: rgb(240, 240, 224);
 }
 
 #ready-check-app {
@@ -37,9 +42,12 @@
 }
 #ready-check-app .users-container .user-card .user-img {
   width: 150px;
+  height: 150px;
 }
 #ready-check-app .users-container .user-card .user-img img {
   border: none;
+  max-height: 100%;
+  max-width: 100%;
 }
 #ready-check-app .users-container .user-card .user-status {
   font-weight: bold;

@@ -1,7 +1,7 @@
 import { registerSettings } from "./scripts/settings.js";
 import ReadyCheckApp from "./scripts/ReadyCheckApp.js";
 
-const rca = new ReadyCheckApp();
+let rca = new ReadyCheckApp();
 
 Hooks.once("init", () => {
   registerSettings();
