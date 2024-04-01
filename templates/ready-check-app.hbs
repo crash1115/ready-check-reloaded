@@ -1,0 +1,27 @@
+<div id="ready-check-app">
+    <div class="users-container">
+        {{#each users as |user uid|}}
+            <div class="user-card {{#if isReady}}ready{{else}}not-ready{{/if}}">
+                <div class="user-img">
+                    <img src="{{user.img}}"/>
+                </div>
+                <div clas="user-name">{{user.name}}</div>
+                <div class="user-status">
+                    {{#if user.isReady}}Ready{{else}}Not Ready{{/if}}
+                </div>
+            </div>
+        {{/each}}
+    </div>
+    
+    <div class="controls">
+        <button type="button" class="toggle-btn">
+            {{#if isReady}}<i class="fas fa-times"></i> I'm Not Ready!
+            {{else}}<i class="fas fa-check"></i> I'm Ready!
+            {{/if}}
+        </button>
+        {{#if isGm}}
+        <button type="button" class="end-btn"><i class="fas fa-check"></i>Finish Ready Check</button>
+        {{/if}}
+    </div>
+
+</div>

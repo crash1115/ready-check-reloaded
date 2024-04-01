@@ -1,0 +1,64 @@
+#players {
+  #player-list {
+    .player {
+      .ready-check-reloaded-status {
+        flex: 0 0 8px;
+        margin-left: 8px;
+        padding-top: 4px;
+        &.ready {
+          color: lime;
+        }
+        &.not-ready {
+          color: red;
+        }
+      }
+    }
+  }
+
+  #ready-check-reloaded-controls {
+    display: flex;
+    margin:4px 2px 4px 2px;
+  }
+}
+
+#ready-check-app {
+  padding: 10px;
+  .users-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    .user-card {
+      text-align: center;
+      display: grid;
+      padding: 5px;
+      margin: 10px;
+      border: 1px solid black;
+      border-radius: 5px;
+
+      .user-img {
+        width: 150px;
+        border:none;
+      }
+
+      .user-status {
+        font-weight: bold;
+      }
+
+      &.ready{
+        background:rgb(181, 217, 181);
+        .user-status{
+          color: rgb(36, 69, 36);
+        }
+      }
+      &.not-ready{
+        background-color:rgb(219, 154, 154);
+        .user-status{
+          color: rgb(124, 2, 2);
+        }
+      }
+    }
+  }
+  .controls {
+    display: flex;
+  }
+}

@@ -1,0 +1,54 @@
+#players #player-list .player .ready-check-reloaded-status {
+  flex: 0 0 8px;
+  margin-left: 8px;
+  padding-top: 4px;
+}
+#players #player-list .player .ready-check-reloaded-status.ready {
+  color: lime;
+}
+#players #player-list .player .ready-check-reloaded-status.not-ready {
+  color: red;
+}
+#players #ready-check-reloaded-controls {
+  display: flex;
+  margin: 4px 2px 4px 2px;
+}
+
+#ready-check-app {
+  padding: 10px;
+}
+#ready-check-app .users-container {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+#ready-check-app .users-container .user-card {
+  text-align: center;
+  display: grid;
+  padding: 5px;
+  margin: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+#ready-check-app .users-container .user-card .user-img {
+  width: 150px;
+  border: none;
+}
+#ready-check-app .users-container .user-card .user-status {
+  font-weight: bold;
+}
+#ready-check-app .users-container .user-card.ready {
+  background: rgb(181, 217, 181);
+}
+#ready-check-app .users-container .user-card.ready .user-status {
+  color: rgb(36, 69, 36);
+}
+#ready-check-app .users-container .user-card.not-ready {
+  background-color: rgb(219, 154, 154);
+}
+#ready-check-app .users-container .user-card.not-ready .user-status {
+  color: rgb(124, 2, 2);
+}
+#ready-check-app .controls {
+  display: flex;
+}
