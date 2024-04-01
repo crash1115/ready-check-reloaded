@@ -17,6 +17,9 @@
 #ready-check-app {
   padding: 10px;
 }
+#ready-check-app .info-container .status {
+  font-weight: bold;
+}
 #ready-check-app .users-container {
   display: flex;
   flex-wrap: nowrap;
@@ -27,35 +30,44 @@
   display: grid;
   padding: 5px;
   margin: 10px;
-  border: 1px solid black;
+  border: 1px solid #6e0000;
+  background-color: #ffdddd;
   border-radius: 5px;
+  box-shadow: 2px 2px 10px #888888;
 }
 #ready-check-app .users-container .user-card .user-img {
   width: 150px;
+}
+#ready-check-app .users-container .user-card .user-img img {
   border: none;
 }
 #ready-check-app .users-container .user-card .user-status {
   font-weight: bold;
+  color: #940000;
 }
 #ready-check-app .users-container .user-card.ready {
-  background: rgb(181, 217, 181);
+  background: #c7d0c0;
+  border: 1px solid #006c00;
 }
 #ready-check-app .users-container .user-card.ready .user-status {
-  color: rgb(36, 69, 36);
-}
-#ready-check-app .users-container .user-card.not-ready {
-  background-color: rgb(219, 154, 154);
-}
-#ready-check-app .users-container .user-card.not-ready .user-status {
-  color: rgb(124, 2, 2);
+  color: green;
 }
 #ready-check-app .users-container .user-card.offline {
-  background-color: rgb(151, 151, 151) !important;
+  background-color: rgba(143, 143, 143, 0.5);
+  border-color: black;
 }
 #ready-check-app .users-container .user-card.offline .user-status {
-  color: rgb(0, 0, 0) !important;
+  color: rgb(0, 0, 0);
 }
 #ready-check-app .controls {
   display: flex;
   margin-top: 10px;
+}
+#ready-check-app .controls button {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 1px 5px #888888;
+}
+#ready-check-app .controls button:hover {
+  outline: none;
+  box-shadow: 0 0 5px var(--color-shadow-primary);
 }

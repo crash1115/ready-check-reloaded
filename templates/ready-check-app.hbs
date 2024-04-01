@@ -1,10 +1,10 @@
 <div id="ready-check-app">
-    <div class="status">
-        <b>{{readyUsers}} / {{onlineUsers}} players are ready.</b>
+    <div class="info-container">
+        <div class="status">{{readyUsers}} / {{onlineUsers}} players are ready.</div>
     </div>
     <div class="users-container">
         {{#each users as |user uid|}}
-            <div class="user-card {{#if isReady}}ready{{else}}not-ready{{/if}} {{#if isOffline}}offline{{/if}}">
+            <div class="user-card {{#if isOffline}}offline{{/if}} {{#if isReady}}ready{{/if}}">
                 <div class="user-img">
                     <img src="{{user.img}}"/>
                 </div>
@@ -27,7 +27,7 @@
             {{/if}}
         </button>
         {{#if isGm}}
-        <button type="button" class="end-btn"><i class="fas fa-check"></i>Finish Ready Check</button>
+        <button type="button" class="end-btn"><i class="fas fa-check-to-slot"></i>End Ready Check</button>
         {{/if}}
     </div>
 

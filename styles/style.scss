@@ -23,6 +23,11 @@
 
 #ready-check-app {
   padding: 10px;
+  .info-container {
+    .status {
+      font-weight: bold;
+    }
+  }
   .users-container {
     display: flex;
     flex-wrap: nowrap;
@@ -32,34 +37,37 @@
       display: grid;
       padding: 5px;
       margin: 10px;
-      border: 1px solid black;
+      border: 1px solid #6e0000;
+      background-color:#ffdddd;
       border-radius: 5px;
-
+      box-shadow: 2px 2px 10px #888888;
+      
       .user-img {
         width: 150px;
-        border:none;
+        img {
+          border: none;
+        }
       }
 
       .user-status {
         font-weight: bold;
+        color: #940000;
       }
 
-      &.ready{
-        background:rgb(181, 217, 181);
+      &.ready {
+        background: #c7d0c0;
+        border: 1px solid #006c00;
+        
         .user-status{
-          color: rgb(36, 69, 36);
+          color: green;
         }
       }
-      &.not-ready{
-        background-color:rgb(219, 154, 154);
+
+      &.offline {
+        background-color:rgba(143, 143, 143, 0.5);
+        border-color: black;
         .user-status{
-          color: rgb(124, 2, 2);
-        }
-      }
-      &.offline{
-        background-color:rgb(151, 151, 151) !important;
-        .user-status{
-          color: rgb(0, 0, 0) !important;
+          color: rgb(0, 0, 0);
         }
       }
     }
@@ -67,5 +75,13 @@
   .controls {
     display: flex;
     margin-top:10px;
+    button{
+      border: 1px solid rgba(0,0,0,.5);
+      box-shadow: 1px 1px 5px #888888;
+      &:hover{
+        outline: none;
+        box-shadow: 0 0 5px var(--color-shadow-primary);
+      }
+    }
   }
 }

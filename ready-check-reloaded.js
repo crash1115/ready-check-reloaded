@@ -57,7 +57,7 @@ function createSocketHandler(){
       data: {
         fromUser: string
         action: "START_CHECK" "END_CHECK" or "UPDATE_STATUS"
-        status: true or false
+        isReady: true or false
       }
     */
     if(data.action === 'START_CHECK'){
