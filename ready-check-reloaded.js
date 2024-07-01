@@ -121,15 +121,15 @@ export async function toggleReadyStatus(){
     const alertSound = game.settings.get('ready-check-reloaded','responseAlertSoundPath');
     playResponseAlert(alertSound, isReady);
     openReadyCheckApp();
-    const socketData = {
-      user: game.user,
-      action: "UPDATE_STATUS",
-      isReady: isReady
-    };
-    game.socket.emit('module.ready-check-reloaded', socketData);
   } else {
     sendChatMessage(game.user, isReady);
   }
+  const socketData = {
+    user: game.user,
+    action: "UPDATE_STATUS",
+    isReady: isReady
+  };
+  game.socket.emit('module.ready-check-reloaded', socketData);
   ui.players.render();
 }
 
