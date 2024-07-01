@@ -1,4 +1,9 @@
+# Version 0.1.3
+- Compatibility with Foundry v12.
+- Fixes issue where Players window would not re-render on player status updates.
+
 # Version 0.1.2
+- Last version compatible with Foundry v11.
 - Fix issue causing alert sounds to play multiple times simultaneously.
 
 # Version 0.1.1

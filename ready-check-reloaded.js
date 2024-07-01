@@ -110,6 +110,7 @@ async function recieveReadyCheck(){
     isReady: false
   };
   game.socket.emit('module.ready-check-reloaded', socketData);
+   ui.players.render();
 }
 
 export async function toggleReadyStatus(){
@@ -129,6 +130,7 @@ export async function toggleReadyStatus(){
   } else {
     sendChatMessage(game.user, isReady);
   }
+  ui.players.render();
 }
 
 function recieveStatusUpdate(data){
@@ -136,6 +138,7 @@ function recieveStatusUpdate(data){
   if(checkIsActive){
     openReadyCheckApp();
   }
+  ui.players.render();
 }
 
 function openReadyCheckApp(){
