@@ -1,6 +1,7 @@
 # Version 0.1.3
 - Compatibility with Foundry v12.
 - Fixes issue where Players window would not re-render on player status updates.
+- A GM user closing the ready check app now ends the ready check
 
 # Version 0.1.2
 - Last version compatible with Foundry v11.

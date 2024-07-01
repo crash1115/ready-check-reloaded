@@ -33,7 +33,7 @@ export default class ReadyCheckApp extends Application {
     }
 
     activateListeners(html) {
-    super.activateListeners(html);
+        super.activateListeners(html);
 
         html.on("click", ".toggle-btn", async ev => {
             toggleReadyStatus();
@@ -52,6 +52,30 @@ export default class ReadyCheckApp extends Application {
     
     }
 
-    
+    async close(){
+        if(game.user.isGM){
+            let reallyClose = false;
+
+            reallyClose = await foundry.applications.api.DialogV2.prompt({
+                window: {title: "Are you sure?", icon: "fa-solid fa-warning"},
+                rejectClose: false,
+                modal: true,
+                content: "Closing this window will end the ready check.",
+                ok: {label: "End Ready Check", callback: () => reallyClose = true },
+              });
+ 
+            if(reallyClose){
+                await game.settings.set('ready-check-reloaded','checkIsActive', false);
+                const socketData = {
+                    user: game.user,
+                    action: "END_CHECK"
+                };
+                game.socket.emit('module.ready-check-reloaded', socketData);
+                super.close();
+            }
+        }  else {
+            super.close();  
+        }
+    }
 
 }
