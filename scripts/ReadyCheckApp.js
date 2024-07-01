@@ -3,7 +3,7 @@ import { toggleReadyStatus } from "../ready-check-reloaded.js";
 export default class ReadyCheckApp extends Application {
 
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             template: "modules/ready-check-reloaded/templates/ready-check-app.hbs",
             title: "Ready Check",
             resizable: false,
