@@ -5,7 +5,7 @@
   "author": "crash1115",
   "url": "https://github.com/crash1115/ready-check-reloaded",
   "readme": "https://github.com//crash1115/ready-check-reloaded/blob/master/README.md",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "compatibility": {
     "minimum": "12",
     "verified": "12"
@@ -18,7 +18,7 @@
   ],
   "socket": true,
   "manifest": "https://raw.githubusercontent.com/crash1115/ready-check-reloaded/main/module.json",
-  "download": "https://github.com/crash1115/ready-check-reloaded/releases/download/v0.1.3/ready-check-reloaded.zip",
+  "download": "https://github.com/crash1115/ready-check-reloaded/releases/download/v0.1.4/ready-check-reloaded.zip",
   "flags": {
     "hotReload": {
         "extensions": ["html", "css", "json"]

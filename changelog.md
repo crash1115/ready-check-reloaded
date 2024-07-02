@@ -1,3 +1,6 @@
+# Version 0.1.4
+- Fix warnings in console.
+
 # Version 0.1.3
 - Compatibility with Foundry v12.
 - Fixes issue where Players window would not re-render on player status updates.
