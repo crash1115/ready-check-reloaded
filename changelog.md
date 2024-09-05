@@ -1,3 +1,6 @@
+# Version 0.1.5
+- Improved compatibility with other modules.
+
 # Version 0.1.4
 - Fix warnings in console.
 

@@ -41,10 +41,11 @@ Hooks.on('renderPlayerList', async function(){
   game.users.contents.forEach(u => {
     const isReady = u.getFlag("ready-check-reloaded", "isReady");
     const userId = u._id;
+    const playersWindowRow = $(`#players #player-list li[data-user-id="${userId}"]`);
     if(isReady){
-      $(`[data-user-id="${userId}"]`).append(`<i class="fas fa-check ready-check-reloaded-status ready" title="Ready"></i>`);
+      playersWindowRow.append(`<i class="fas fa-check ready-check-reloaded-status ready" title="Ready"></i>`);
     } else {
-      $(`[data-user-id="${userId}"]`).append(`<i class="fas fa-times ready-check-reloaded-status not-ready" title="Not Ready"></i>`);
+      playersWindowRow.append(`<i class="fas fa-times ready-check-reloaded-status not-ready" title="Not Ready"></i>`);
     }
   });
 
