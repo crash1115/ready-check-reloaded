@@ -27,6 +27,25 @@ export function registerSettings() {
         type: String
     });
 
+    game.settings.register("ready-check-reloaded", "playAlertForCheckEnd", {
+        name: "Play Alerts when Ready Check Ends",
+        hint: "Play a sound when a ready check is completed. The alert sound is set by the GM.",
+        scope: "world",
+        config: true,
+        default: false,
+        type: Boolean
+    });
+
+    game.settings.register("ready-check-reloaded", "checkAlertEndSoundPath", {
+        name: "Ready Check End Sound",
+        hint: "The sound that plays when a ready check is completed.",
+        scope: "world",
+        config: true,
+        default: 'modules/ready-check-reloaded/sounds/notification.mp3',
+        filePicker: true,
+        type: String
+    });
+
     game.settings.register("ready-check-reloaded", "playAlertForResponse", {
         name: "Play Alerts on Responses",
         hint: "Play each user's sound when they respond to ready checks.",

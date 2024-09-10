@@ -1,3 +1,6 @@
+# Version 0.2.0
+- Added setting to customize a sound that plays when a check is completed.
+
 # Version 0.1.5
 - Improved compatibility with other modules.
 

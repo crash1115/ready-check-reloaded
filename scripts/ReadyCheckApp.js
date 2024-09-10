@@ -49,7 +49,6 @@ export default class ReadyCheckApp extends Application {
             game.socket.emit('module.ready-check-reloaded', socketData);
             this.close(true);
         });
-    
     }
 
     async close(){
@@ -62,7 +61,7 @@ export default class ReadyCheckApp extends Application {
                 modal: true,
                 content: "Closing this window will end the ready check.",
                 ok: {label: "End Ready Check", callback: () => reallyClose = true },
-              });
+            });
  
             if(reallyClose){
                 await game.settings.set('ready-check-reloaded','checkIsActive', false);
@@ -71,6 +70,7 @@ export default class ReadyCheckApp extends Application {
                     action: "END_CHECK"
                 };
                 game.socket.emit('module.ready-check-reloaded', socketData);
+                playReadyCheckEndAlert();
                 super.close();
             }
         }  else {
@@ -79,3 +79,14 @@ export default class ReadyCheckApp extends Application {
     }
 
 }
+
+function playReadyCheckEndAlert(){
+    const playAlert = game.settings.get("ready-check-reloaded", "playAlertForCheckEnd");
+    if (!playAlert) return;
+    const alertSound = game.settings.get("ready-check-reloaded", "checkAlertEndSoundPath");
+    if(!alertSound){
+      AudioHelper.play({src: "modules/ready-check-reloaded/sounds/notification.mp3", volume: 1, autoplay: true, loop: false}, true);
+    } else{
+      AudioHelper.play({src: alertSound, volume: 1, autoplay: true, loop: false}, true);
+    }
+  }

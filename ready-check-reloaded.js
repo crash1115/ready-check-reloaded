@@ -66,7 +66,7 @@ function createSocketHandler(){
       recieveReadyCheck();
     }
     else if (data.action === 'END_CHECK'){
-      closeReadyCheckApp()
+      closeReadyCheckApp();
     }
     else if (data.action === 'UPDATE_STATUS'){
       recieveStatusUpdate(data);
@@ -111,7 +111,7 @@ async function recieveReadyCheck(){
     isReady: false
   };
   game.socket.emit('module.ready-check-reloaded', socketData);
-   ui.players.render();
+  ui.players.render();
 }
 
 export async function toggleReadyStatus(){
