@@ -1,3 +1,5 @@
+![image](https://github.com/user-attachments/assets/5d0eacb1-8534-4672-be85-da1ebdf755ff)
+
 # About
 A system agnostic module for Foundry VTT that implements ready checks.
 
