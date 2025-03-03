@@ -21,3 +21,6 @@ When a ready check has been started by the GM, you can toggle your ready status 
 
 ## Customizing Alert Sounds
 The module settings menu allows you to configure two types of alert sounds. GM users can set the sound that plays when ready checks are started. All users can set a sound that plays when they respond to an active ready check. The module includes a default sound for each of these, but you can use sounds from your Foundry user data folders, or a URL.
+
+# Installation
+Via manifest URL: https://raw.githubusercontent.com/crash1115/ready-check-reloaded/main/module.json
