@@ -1,15 +1,13 @@
+// PLAYERS PANEL CONTROL BUTTONS
+
 #players {
-  #player-list {
-    .player {
-      .ready-check-reloaded-status {
-        flex: 0 0 8px;
-        margin-left: 8px;
-        padding-top: 4px;
-        &.ready {
-          color: lime;
-        }
-        &.not-ready {
-          color: red;
+  #players-active {
+    .players-list{
+      .player {
+        .ready-check-reloaded-status {
+          flex: 0 0 8px;
+          margin-left: 8px;
+          padding-top: 4px;
         }
       }
     }
@@ -17,19 +15,19 @@
 
   #ready-check-reloaded-controls {
     display: flex;
+    width: 200px;
+    gap:8px;
+
     button {
-      margin: 0.25rem;
-      background: rgba(60, 60, 60, 0.6);
-      border: 1px solid rgb(25,24,19);
-      color: rgb(240,240,224);
+      flex-grow:1;
     }
   }
 }
 
-
+// READY CHECK APP
 
 #ready-check-app {
-  padding: 10px;
+  
   .info-container {
     .status {
       font-weight: bold;
@@ -39,15 +37,15 @@
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
+    gap: 10px;
+    margin-top: 10px;
+    
     .user-card {
       text-align: center;
       display: grid;
       padding: 5px;
-      margin: 10px;
-      border: 1px solid #6e0000;
-      background-color:#ffdddd;
+      border: 1px solid;
       border-radius: 5px;
-      box-shadow: 2px 2px 10px #888888;
       
       .user-img {
         width: 150px;
@@ -61,36 +59,120 @@
 
       .user-status {
         font-weight: bold;
-        color: #940000;
       }
+    }
+  }
 
-      &.ready {
-        background: #c7d0c0;
-        border: 1px solid #006c00;
-        
-        .user-status{
-          color: green;
-        }
-      }
+  .controls {
+    display: flex;
+    margin-top:10px;
+    gap: 10px;
+    button {
+      width: 50%;
+    }
+  }
+}
 
-      &.offline {
-        background-color:rgba(143, 143, 143, 0.5);
-        border-color: black;
-        .user-status{
-          color: rgb(0, 0, 0);
+// THEME-SPECIFIC ICON COLORATION
+
+body.theme-dark {
+  #players {
+    #players-active {
+      .players-list{
+        .player {
+          .ready-check-reloaded-status {
+            &.ready {
+              color: lime;
+            }
+            &.not-ready {
+              color: red;
+            }
+          }
         }
       }
     }
   }
-  .controls {
-    display: flex;
-    margin-top:10px;
-    button{
-      border: 1px solid rgba(0,0,0,.5);
-      box-shadow: 1px 1px 5px #888888;
-      &:hover{
-        outline: none;
-        box-shadow: 0 0 5px var(--color-shadow-primary);
+
+  #ready-check-app {
+    .users-container {    
+      .user-card {
+        border-color: #6e0000;
+        background-color:#ffdddd;
+        color: black;
+        // .user-name {
+        //   color: black;
+        // }
+
+        .user-status {
+          color: #940000;
+        }
+  
+        &.ready {
+          background: #c7d0c0;
+          border-color: #006c00;
+          
+          .user-status{
+            color: green;
+          }
+        }
+  
+        &.offline {
+          background-color:rgb(149, 149, 149);
+          border-color: black;
+
+          .user-status{
+            color: rgb(0, 0, 0);
+          }
+        }
+      }
+    }
+  }
+}
+
+body.theme-light {
+  #players {
+    #players-active {
+      .players-list{
+        .player {
+          .ready-check-reloaded-status {
+            &.ready {
+              color: green;
+            }
+            &.not-ready {
+              color: red;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #ready-check-app {
+    .users-container {    
+      .user-card {
+        border-color: #6e0000;
+        background-color:#ffdddd;
+
+        .user-status {
+          color: #940000;
+        }
+  
+        &.ready {
+          background: #c7d0c0;
+          border-color: #006c00;
+          
+          .user-status{
+            color: green;
+          }
+        }
+  
+        &.offline {
+          background-color:rgb(149, 149, 149);
+          border-color: black;
+          .user-status{
+            color: rgb(0, 0, 0);
+          }
+        }
       }
     }
   }

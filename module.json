@@ -1,16 +1,20 @@
 {
-  "name": "ready-check-reloaded",
-  "title": "Ready Set Go! Reloaded",
+  "id": "ready-check-reloaded",
+  "title": "Ready Check: Reloaded",
   "description": "Implements ready checks and ready/not ready status toggles. A totally re-written, more modern version of Ready Set Go! - A Ready Check Module.",
-  "author": "crash1115",
+  "authors": [
+      {
+        "name": "CRASH1115"
+      }
+  ],
   "url": "https://github.com/crash1115/ready-check-reloaded",
   "readme": "https://github.com//crash1115/ready-check-reloaded/blob/master/README.md",
-  "manifest": "https://raw.githubusercontent.com/crash1115/ready-check-reloaded/main/module.json",
-  "download": "https://github.com/crash1115/ready-check-reloaded/releases/download/v0.2.0/ready-check-reloaded.zip",
-  "version": "0.2.0",
+  "manifest": "https://github.com/crash1115/ready-check-reloaded/releases/latest/download/module.json",
+  "download": "https://github.com/crash1115/ready-check-reloaded/releases/download/0.3.0/ready-check-reloaded.zip",
+  "version": "0.3.0",
   "compatibility": {
-    "minimum": "12",
-    "verified": "12"
+    "minimum": "13",
+    "verified": "13"
   },
   "esmodules": [
     "ready-check-reloaded.js"
@@ -21,7 +25,7 @@
   "socket": true,
   "flags": {
     "hotReload": {
-        "extensions": ["html", "css", "json"]
+        "extensions": ["hbs", "css"]
     }
   } 
 }

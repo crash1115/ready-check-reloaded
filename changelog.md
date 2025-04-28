@@ -1,3 +1,10 @@
+# Version 0.3.0
+- Compatibility with Foundry v13.
+- Replaced all the jQuery with vanilla JS
+- ReadyCheckApp is now using AppV2
+- Updated the manifest to use the correct fields
+- Added support for light and dark mode ui themes
+
 # Version 0.2.0
 - Added setting to customize a sound that plays when a check is completed.
 

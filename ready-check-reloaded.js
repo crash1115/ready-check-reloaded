@@ -1,7 +1,5 @@
 import { registerSettings } from "./scripts/settings.js";
-import ReadyCheckApp from "./scripts/ReadyCheckApp.js";
-
-let rca = new ReadyCheckApp();
+import { ReadyCheckApp } from "./scripts/ReadyCheckApp.js";
 
 Hooks.once("init", () => {
   registerSettings();
@@ -24,28 +22,51 @@ Hooks.once("ready", async() => {
   }
 })
 
-Hooks.on('renderPlayerList', async function(){
-  // Add controls to player window
-  const controls = `
-    <div id="ready-check-reloaded-controls">
-      <button type="button" id="ready-check-reloaded-toggle" title="Toggle Ready Status" aria-label="Toggle Ready Status"><i class="fas fa-hourglass-half"></i></button>
-    </div>`;
-  $("#players").append(controls);
+Hooks.on('renderPlayers', async function(){
+  // Create controls div
+  let controlsDiv = document.createElement("div");
+  controlsDiv.id = "ready-check-reloaded-controls";
 
-  if(game.user.isGM){
-    const startButton = `<button type="button" id="ready-check-reloaded-start" title="Start Ready Check" aria-label="Start Ready Check"><i class="fas fa-check-to-slot"></i></button>`;
-    $("#ready-check-reloaded-controls").prepend(startButton);
+  // Add start check button
+  if(game.user.isGM){  
+    let startCheckBtn = document.createElement("button");
+    startCheckBtn.id = "ready-check-reloaded-start";
+    startCheckBtn.classList = ["ui-control"];
+    startCheckBtn.setAttribute("data-tooltip","Start Ready Check");
+    startCheckBtn.ariaLabel = "Start Ready Check";
+    startCheckBtn.innerHTML = `<i class="fas fa-check-to-slot"></i>`;
+    controlsDiv.appendChild(startCheckBtn);
   }
+
+  // Add status toggle button
+  let toggleStatusBtn = document.createElement("button");
+  toggleStatusBtn.id = "ready-check-reloaded-toggle";
+  toggleStatusBtn.classList = ["ui-control"];
+  toggleStatusBtn.setAttribute("data-tooltip","Toggle Ready Status");
+  toggleStatusBtn.ariaLabel = "Toggle Ready Status";
+  toggleStatusBtn.innerHTML = `<i class="fas fa-hourglass-half"></i>`;
+  controlsDiv.appendChild(toggleStatusBtn);
+
+  // Add controls div to players panel
+  const playersPanel = document.querySelector("#players");
+  playersPanel.appendChild(controlsDiv);
 
   // Add status indicators to player window
   game.users.contents.forEach(u => {
     const isReady = u.getFlag("ready-check-reloaded", "isReady");
     const userId = u._id;
-    const playersWindowRow = $(`#players #player-list li[data-user-id="${userId}"]`);
-    if(isReady){
-      playersWindowRow.append(`<i class="fas fa-check ready-check-reloaded-status ready" title="Ready"></i>`);
-    } else {
-      playersWindowRow.append(`<i class="fas fa-times ready-check-reloaded-status not-ready" title="Not Ready"></i>`);
+    const playersWindowRow = document.querySelector(`#players #players-active .players-list li[data-user-id="${userId}"]`);
+    
+    if(playersWindowRow){
+      let readyIcon = document.createElement("i");
+      readyIcon.classList.add("fas", "fa-check","ready-check-reloaded-status", "ready")
+      readyIcon.title = "Ready";
+  
+      let notReadyIcon = document.createElement("i");
+      notReadyIcon.classList.add("fas", "fa-times","ready-check-reloaded-status", "not-ready")
+      notReadyIcon.title = "Not Ready";
+  
+      playersWindowRow.append(isReady ? readyIcon : notReadyIcon);
     }
   });
 
@@ -77,11 +98,11 @@ function createSocketHandler(){
 }
 
 function activateListeners(){
-  $('#ready-check-reloaded-start').click(async (event) => {
+  document.querySelector('#ready-check-reloaded-start').addEventListener("click", async (event) => {
     event.preventDefault();
     startReadyCheck();
   });
-  $('#ready-check-reloaded-toggle').click(async (event) => {
+  document.querySelector('#ready-check-reloaded-toggle').addEventListener("click", async (event) => {
     event.preventDefault();
     toggleReadyStatus();
   });
@@ -143,18 +164,13 @@ function recieveStatusUpdate(data){
 }
 
 function openReadyCheckApp(){
-  if(rca == null ){
-    rca = new ReadyCheckApp().render(true);
-  } else {
-    rca.render(true);
-  }
+  const rca = new ReadyCheckApp;
+  rca.render(true)
 }
 
 async function closeReadyCheckApp(){
-  if(rca != null && rca.rendered){
-    await rca.close();
-  }
-  rca = null;
+  const rca = foundry.applications.instances.get("ready-check-reloaded-app");
+  await rca.close();
 }
 
 function sendChatMessage(user, isReady){
@@ -170,9 +186,9 @@ function playReadyCheckAlert(){
   if (!playAlert) return;
   const alertSound = game.settings.get("ready-check-reloaded", "checkAlertSoundPath");
   if(!alertSound){
-    AudioHelper.play({src: "modules/ready-check-reloaded/sounds/notification.mp3", volume: 1, autoplay: true, loop: false}, true);
+    foundry.audio.AudioHelper.play({src: "modules/ready-check-reloaded/sounds/notification.mp3", volume: 1, autoplay: true, loop: false}, true);
   } else{
-    AudioHelper.play({src: alertSound, volume: 1, autoplay: true, loop: false}, true);
+    foundry.audio.AudioHelper.play({src: alertSound, volume: 1, autoplay: true, loop: false}, true);
   }
 }
 
@@ -180,8 +196,8 @@ function playResponseAlert(alertSound, isReady){
   const playAlert = game.settings.get("ready-check-reloaded", "playAlertForResponse");
   if (!playAlert || !isReady) return;
   if(!alertSound){
-    AudioHelper.play({src: "modules/ready-check-reloaded/sounds/notification-2.mp3", volume: 1, autoplay: true, loop: false}, true);
+    foundry.audio.AudioHelper.play({src: "modules/ready-check-reloaded/sounds/notification-2.mp3", volume: 1, autoplay: true, loop: false}, true);
   } else{
-    AudioHelper.play({src: alertSound, volume: 1, autoplay: true, loop: false}, true);
+    foundry.audio.AudioHelper.play({src: alertSound, volume: 1, autoplay: true, loop: false}, true);
   }
 }

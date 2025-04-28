@@ -21,14 +21,16 @@
     </div>
     
     <div class="controls">
-        <button type="button" class="toggle-btn">
+        <button type="button" class="toggle-btn" data-action="respond">
             {{#if isReady}}<i class="fas fa-times"></i> I'm Not Ready!
             {{else}}<i class="fas fa-check"></i> I'm Ready!
             {{/if}}
         </button>
         {{#if isGm}}
-        <button type="button" class="end-btn"><i class="fas fa-check-to-slot"></i>End Ready Check</button>
+        <button type="button" class="end-btn" data-action="end"><i class="fas fa-check-to-slot"></i>End Ready Check</button>
         {{/if}}
     </div>
 
 </div>
+
+

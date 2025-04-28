@@ -1,27 +1,17 @@
-#players #player-list .player .ready-check-reloaded-status {
+#players #players-active .players-list .player .ready-check-reloaded-status {
   flex: 0 0 8px;
   margin-left: 8px;
   padding-top: 4px;
 }
-#players #player-list .player .ready-check-reloaded-status.ready {
-  color: lime;
-}
-#players #player-list .player .ready-check-reloaded-status.not-ready {
-  color: red;
-}
 #players #ready-check-reloaded-controls {
   display: flex;
+  width: 200px;
+  gap: 8px;
 }
 #players #ready-check-reloaded-controls button {
-  margin: 0.25rem;
-  background: rgba(60, 60, 60, 0.6);
-  border: 1px solid rgb(25, 24, 19);
-  color: rgb(240, 240, 224);
+  flex-grow: 1;
 }
 
-#ready-check-app {
-  padding: 10px;
-}
 #ready-check-app .info-container .status {
   font-weight: bold;
 }
@@ -29,16 +19,15 @@
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
+  gap: 10px;
+  margin-top: 10px;
 }
 #ready-check-app .users-container .user-card {
   text-align: center;
   display: grid;
   padding: 5px;
-  margin: 10px;
-  border: 1px solid #6e0000;
-  background-color: #ffdddd;
+  border: 1px solid;
   border-radius: 5px;
-  box-shadow: 2px 2px 10px #888888;
 }
 #ready-check-app .users-container .user-card .user-img {
   width: 150px;
@@ -51,31 +40,69 @@
 }
 #ready-check-app .users-container .user-card .user-status {
   font-weight: bold;
-  color: #940000;
-}
-#ready-check-app .users-container .user-card.ready {
-  background: #c7d0c0;
-  border: 1px solid #006c00;
-}
-#ready-check-app .users-container .user-card.ready .user-status {
-  color: green;
-}
-#ready-check-app .users-container .user-card.offline {
-  background-color: rgba(143, 143, 143, 0.5);
-  border-color: black;
-}
-#ready-check-app .users-container .user-card.offline .user-status {
-  color: rgb(0, 0, 0);
 }
 #ready-check-app .controls {
   display: flex;
   margin-top: 10px;
+  gap: 10px;
 }
 #ready-check-app .controls button {
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  box-shadow: 1px 1px 5px #888888;
+  width: 50%;
 }
-#ready-check-app .controls button:hover {
-  outline: none;
-  box-shadow: 0 0 5px var(--color-shadow-primary);
+
+body.theme-dark #players #players-active .players-list .player .ready-check-reloaded-status.ready {
+  color: lime;
+}
+body.theme-dark #players #players-active .players-list .player .ready-check-reloaded-status.not-ready {
+  color: red;
+}
+body.theme-dark #ready-check-app .users-container .user-card {
+  border-color: #6e0000;
+  background-color: #ffdddd;
+  color: black;
+}
+body.theme-dark #ready-check-app .users-container .user-card .user-status {
+  color: #940000;
+}
+body.theme-dark #ready-check-app .users-container .user-card.ready {
+  background: #c7d0c0;
+  border-color: #006c00;
+}
+body.theme-dark #ready-check-app .users-container .user-card.ready .user-status {
+  color: green;
+}
+body.theme-dark #ready-check-app .users-container .user-card.offline {
+  background-color: rgb(149, 149, 149);
+  border-color: black;
+}
+body.theme-dark #ready-check-app .users-container .user-card.offline .user-status {
+  color: rgb(0, 0, 0);
+}
+
+body.theme-light #players #players-active .players-list .player .ready-check-reloaded-status.ready {
+  color: green;
+}
+body.theme-light #players #players-active .players-list .player .ready-check-reloaded-status.not-ready {
+  color: red;
+}
+body.theme-light #ready-check-app .users-container .user-card {
+  border-color: #6e0000;
+  background-color: #ffdddd;
+}
+body.theme-light #ready-check-app .users-container .user-card .user-status {
+  color: #940000;
+}
+body.theme-light #ready-check-app .users-container .user-card.ready {
+  background: #c7d0c0;
+  border-color: #006c00;
+}
+body.theme-light #ready-check-app .users-container .user-card.ready .user-status {
+  color: green;
+}
+body.theme-light #ready-check-app .users-container .user-card.offline {
+  background-color: rgb(149, 149, 149);
+  border-color: black;
+}
+body.theme-light #ready-check-app .users-container .user-card.offline .user-status {
+  color: rgb(0, 0, 0);
 }

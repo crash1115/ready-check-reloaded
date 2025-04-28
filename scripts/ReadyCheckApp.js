@@ -1,23 +1,35 @@
 import { toggleReadyStatus } from "../ready-check-reloaded.js";
 
-export default class ReadyCheckApp extends Application {
+const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
 
-    static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-            template: "modules/ready-check-reloaded/templates/ready-check-app.hbs",
+export class ReadyCheckApp extends HandlebarsApplicationMixin(ApplicationV2) {
+
+    static DEFAULT_OPTIONS = {
+        id: "ready-check-reloaded-app",
+        tag: "div",
+        window: {
             title: "Ready Check",
-            resizable: false,
-            height: 356,
-            width: "auto",
-            id: "readycheck-app"
-        });
+        },
+        classes: ["ready-check-reloaded"],
+        position: {
+            height:356,
+            width:"auto"
+        },
+        actions: {
+            respond: ReadyCheckApp.respondToReadyCheck,
+            end: ReadyCheckApp.endReadyCheck
+        }
+    };
+
+    static PARTS = {
+        main: {
+            template: "modules/ready-check-reloaded/templates/ready-check-app.hbs"
+        }
     }
 
-    async getData(options = {}) {
-        let data = super.getData();
-        data.isGm = game.user.isGM;
-        data.isReady = game.user.flags['ready-check-reloaded'].isReady;
-        data.users = game.users.map(u => {
+    async _prepareContext(options) {
+
+        const users = game.users.map(u => {
             const info = {
                 id: u._id,
                 name: u.name,
@@ -27,35 +39,53 @@ export default class ReadyCheckApp extends Application {
             }
             return info;
         }).sort((a,b) => a.isOffline - b.isOffline);
-        data.readyUsers = data.users.filter(u => u.isReady).length;
-        data.onlineUsers = data.users.filter(u => !u.isOffline).length;
-        return data;
+
+        const context = {
+            isGm: game.user.isGM,
+            isReady: game.user.flags['ready-check-reloaded'].isReady,
+            users: users,
+            readyUsers: users.filter(u => u.isReady).length,
+            onlineUsers: users.filter(u => !u.isOffline).length
+        }
+
+        return context;        
     }
 
-    activateListeners(html) {
-        super.activateListeners(html);
+    // A flag to keep track of whether we need to display the close confirmation dialog
+    // when closing the sheet
+    forceClose = false;
 
-        html.on("click", ".toggle-btn", async ev => {
-            toggleReadyStatus();
-            this.render(true);
-        });
-
-        html.on("click", ".end-btn", async ev => {
-            await game.settings.set('ready-check-reloaded','checkIsActive', false);
-            const socketData = {
-                user: game.user,
-                action: "END_CHECK"
-            };
-            game.socket.emit('module.ready-check-reloaded', socketData);
-            this.close(true);
-        });
+    /**
+   * @param {PointerEvent} event - The originating click event
+   * @param {HTMLElement} target - the capturing HTML element which defined a [data-action]
+   */
+    static respondToReadyCheck(event, target) {
+        toggleReadyStatus();
+        this.render(true);
     }
 
+    /**
+   * @param {PointerEvent} event - The originating click event
+   * @param {HTMLElement} target - the capturing HTML element which defined a [data-action]
+   */
+    static async endReadyCheck(event, target) {
+        await game.settings.set('ready-check-reloaded','checkIsActive', false);
+        const socketData = {
+            user: game.user,
+            action: "END_CHECK"
+        };
+        game.socket.emit('module.ready-check-reloaded', socketData);
+        this.forceClose = true;
+        this.close(true);
+    }    
+
+    /** @override */
     async close(){
         if(game.user.isGM){
-            let reallyClose = false;
+            // let reallyClose = false;
+            let reallyClose = this.forceClose;
 
-            reallyClose = await foundry.applications.api.DialogV2.prompt({
+            if(!reallyClose) reallyClose = await foundry.applications.api.DialogV2.prompt({
                 window: {title: "Are you sure?", icon: "fa-solid fa-warning"},
                 rejectClose: false,
                 modal: true,
@@ -84,9 +114,9 @@ function playReadyCheckEndAlert(){
     const playAlert = game.settings.get("ready-check-reloaded", "playAlertForCheckEnd");
     if (!playAlert) return;
     const alertSound = game.settings.get("ready-check-reloaded", "checkAlertEndSoundPath");
-    if(!alertSound){
-      AudioHelper.play({src: "modules/ready-check-reloaded/sounds/notification.mp3", volume: 1, autoplay: true, loop: false}, true);
-    } else{
-      AudioHelper.play({src: alertSound, volume: 1, autoplay: true, loop: false}, true);
+    if(!alertSound) {
+        foundry.audio.AudioHelper.play({src: "modules/ready-check-reloaded/sounds/notification.mp3", volume: 1, autoplay: true, loop: false}, true);
+    } else {
+        foundry.audio.AudioHelper.play({src: alertSound, volume: 1, autoplay: true, loop: false}, true);
     }
-  }
+}
