@@ -32,6 +32,9 @@
 #ready-check-app .users-container .user-card .user-img {
   width: 150px;
   height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #ready-check-app .users-container .user-card .user-img img {
   border: none;
@@ -47,7 +50,7 @@
   gap: 10px;
 }
 #ready-check-app .controls button {
-  width: 50%;
+  width: 100%;
 }
 
 body.theme-dark #players #players-active .players-list .player .ready-check-reloaded-status.ready {

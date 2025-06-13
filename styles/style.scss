@@ -50,6 +50,9 @@
       .user-img {
         width: 150px;
         height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         img {
           border: none;
           max-height: 100%;
@@ -68,7 +71,7 @@
     margin-top:10px;
     gap: 10px;
     button {
-      width: 50%;
+      width: 100%;
     }
   }
 }

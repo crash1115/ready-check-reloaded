@@ -1,3 +1,7 @@
+# Version 0.3.1
+- Fixed players not being able to toggle status with the button below the players UI
+- Updated some styles for the ready check application
+
 # Version 0.3.0
 - Compatibility with Foundry v13.
 - Replaced all the jQuery with vanilla JS

@@ -98,14 +98,21 @@ function createSocketHandler(){
 }
 
 function activateListeners(){
-  document.querySelector('#ready-check-reloaded-start').addEventListener("click", async (event) => {
-    event.preventDefault();
-    startReadyCheck();
-  });
-  document.querySelector('#ready-check-reloaded-toggle').addEventListener("click", async (event) => {
-    event.preventDefault();
-    toggleReadyStatus();
-  });
+  const startBtn = document.querySelector('#ready-check-reloaded-start');
+  if(startBtn){
+    startBtn.addEventListener("click", async (event) => {
+      event.preventDefault();
+      startReadyCheck();
+    });
+  }
+
+  const toggleBtn = document.querySelector('#ready-check-reloaded-toggle');
+  if(toggleBtn){
+    toggleBtn.addEventListener("click", async (event) => {
+      event.preventDefault();
+      toggleReadyStatus();
+    });
+  }
 };
 
 async function startReadyCheck(){
