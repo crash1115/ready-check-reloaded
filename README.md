@@ -10,7 +10,7 @@ Features include:
 
 # Compatibility
 
-Foundry V13 - Use [version 0.3.0](https://github.com/crash1115/ready-check-reloaded/releases/tag/0.3.0) (or later) of the module.
+Foundry V13 - Use [version 0.3.1](https://github.com/crash1115/ready-check-reloaded/releases/tag/0.3.1) (or later) of the module.
 
 ![image](https://github.com/user-attachments/assets/545fffea-0aac-48d6-9597-518cd6c0c71e)
 
@@ -31,4 +31,4 @@ When a ready check has been started by the GM, you can toggle your ready status 
 The module settings menu allows you to configure two types of alert sounds. GM users can set the sound that plays when ready checks are started. All users can set a sound that plays when they respond to an active ready check. The module includes a default sound for each of these, but you can use sounds from your Foundry user data folders, or a URL.
 
 # Installation
-Via manifest URL: https://raw.githubusercontent.com/crash1115/ready-check-reloaded/main/module.json
+Via manifest URL: https://github.com/crash1115/ready-check-reloaded/releases/latest/download/module.json
