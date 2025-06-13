@@ -1,5 +1,3 @@
-![image](https://github.com/user-attachments/assets/5d0eacb1-8534-4672-be85-da1ebdf755ff)
-
 # About
 A system agnostic module for Foundry VTT that implements ready checks.
 
@@ -9,6 +7,16 @@ Features include:
 - Ready/not ready indicators for all players and GMs in the Players window
 - An enhanced UI for ready checks that displays ready check status in more detail for all users
 - Customizable alert sounds for ready check start, and for individual user responses
+
+# Compatibility
+
+Foundry V13 - Use [version 0.3.0](https://github.com/crash1115/ready-check-reloaded/releases/tag/0.3.0) (or later) of the module.
+
+![image](https://github.com/user-attachments/assets/545fffea-0aac-48d6-9597-518cd6c0c71e)
+
+Foundry V12 - Use [version 0.2.0](https://github.com/crash1115/ready-check-reloaded/releases/tag/v0.2.0) of the module.
+
+![image](https://github.com/user-attachments/assets/5d0eacb1-8534-4672-be85-da1ebdf755ff)
 
 ## Toggling Ready Status
 As a player or GM user, click the button at the bottom of the Players UI to toggle your status to Ready/Not Ready. If the module is configured to do so, this will post a message to chat notifying everyone of your status change.
