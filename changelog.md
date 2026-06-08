@@ -1,3 +1,6 @@
+# Version 0.14.0
+- Support for Foundry v14. The ready check window is not detachable.
+
 # Version 0.3.1
 - Fixed players not being able to toggle status with the button below the players UI
 - Updated some styles for the ready check application

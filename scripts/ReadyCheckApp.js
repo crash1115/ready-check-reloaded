@@ -51,6 +51,10 @@ export class ReadyCheckApp extends HandlebarsApplicationMixin(ApplicationV2) {
         return context;        
     }
 
+    _canDetach(){
+        return false;
+    }
+
     // A flag to keep track of whether we need to display the close confirmation dialog
     // when closing the sheet
     forceClose = false;
